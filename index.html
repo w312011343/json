@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0,user-scalable=yes,maximum-scale=1.0">
+	<title>JSON</title>
+	<link rel="stylesheet" type="text/css" href="./css/global.min.css" />
+	<link rel="stylesheet" type="text/css" href="./css/indexCodeMirror.min.css" />
+</head>
+
+<body class="load-indicator">
+	<div class="container t-small-margin">
+		<!--  start 各个模块代码 -->
+		<form name="main" onsubmit="return false">
+			<div class="editor-box1">
+				<div class="float-left relative" style="width: 950px">
+					<!-- json编辑器 -->
+					<div id="editor">
+						<textarea id="code" name="code"></textarea>
+						<div id="resize">
+							<i class="icon-bars"></i>
+						</div>
+					</div>
+					<!-- 功能 -->
+					<div class="t-huge-margin">
+						<div class="btn-group">
+							<button class="copy hide display-none"></button>
+							<input type="submit" class="btn btn-primary" name="validate" data-ga="validate" id="validate"
+								value="格式化校验">
+							<button type="button" class="btn" id="compressZipJson" data-html="index">压缩</button>
+							<button type="button" class="btn" id="escapeJson" data-html="index">转义</button>
+							<button type="button" class="btn" id="restoreJson" data-html="index">去除转义</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<!-- 校验结果 -->
+		<div class="with-icon display-none" id="jsonlintBox">
+			<i class="icon-info-sign" id="jsonlintIcon"></i>
+			<pre class="content" id="jsonlintResult">请贴入要格式化的JSON代码</pre>
+		</div>
+	</div>
+
+	<script src="./js/global.min.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 编辑器组件 -->
+	<script src="./js/indexCodeMirror.min.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		//根据DOM元素的id构造出一个编辑器
+		var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+			mode: 'application/json', //设置json模式
+			lineNumbers: true, //是否显示左边换行术字
+			lineWrapping: false, //是否折叠
+			foldGutter: true,
+			indentUnit: 4,
+			gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter']
+		});
+	</script>
+	<script src="./js/jsonlint.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./js/bejson_index.min.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
